@@ -7,11 +7,13 @@ gem 'thin'
 
 # Javascript
 gem 'json', '~> 1.6'
-gem 'jquery-rails', '~> 1.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Markup / templates
 gem 'rdiscount', '~> 1.6'
-gem 'haml', '~> 3.1'
+gem 'haml'
+gem 'foundation-rails'
 
 # Authentication
 gem 'devise', '~> 1.5'
@@ -32,7 +34,6 @@ gem 'fog', '~> 0.1'
 
 # Paging
 gem 'kaminari'
-gem 'kaminari-bootstrap'
 
 # Caching
 gem 'dalli', '~> 1.1'
@@ -53,6 +54,7 @@ gem 'factory_girl_rails', '~> 1.7'
 # In production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2'
+  gem 'foundation-icons-sass-rails'
   gem 'coffee-rails', '~> 3.2'
   gem 'uglifier', '>= 1.0'
   gem 'execjs', '1.3' # Remove once execjs v1.3.2 or 1.3.1.1
@@ -60,7 +62,7 @@ end
 
 group :development, :test do
   # Database
-  gem 'sqlite3'
+  gem 'pg'
 
   # Rspec
   gem 'rspec-rails', '~> 2.7'

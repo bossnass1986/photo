@@ -1,12 +1,13 @@
 - content_for :title do
   Posts
-  .pull-right
-    = form_for :search, :url => admin_posts_path, :method => :get, :class => 'form-search' do |form|
-      = form.text_field :q, :placeholder => 'Search', :class => 'input-medium search-query', :value => defined?(params[:search][:q]) ? params[:search][:q] : ''
 
-%p= link_to(raw("<i class='icon-plus icon-white'></i> New Post"), new_admin_post_path, :class => 'btn btn-success')
+.right
+  = form_for :search, :url => admin_posts_path, :method => :get, :class => 'form-search' do |form|
+    = form.text_field :q, :placeholder => 'Search', :class => 'input-medium search-query', :value => defined?(params[:search][:q]) ? params[:search][:q] : ''
 
-%table.table.table-bordered.table-striped
+%p= link_to(raw("<i class='fi-plus white'></i> New Post"), new_admin_post_path, :class => 'button tiny')
+
+%table
   %thead
     %tr
       %th Title

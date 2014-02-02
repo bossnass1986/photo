@@ -1,7 +1,7 @@
 development:
-  adapter: sqlite3
+  adapter: postgresql
   encoding: utf8
-  database: db/development.sqlite3
+  database: grokphoto_development
 
 test:
   adapter: sqlite3

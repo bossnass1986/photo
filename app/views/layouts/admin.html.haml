@@ -7,38 +7,44 @@
     = csrf_meta_tags
     = yield(:meta)
   %body.admin
-  .navbar.navbar-fixed-top
-    .navbar-inner
-      .container
-        %ul.nav
-          - if photographer_signed_in?
-            %li{ :class => controller.controller_name == 'events' ? 'active' : '' }= link_to 'Dashboard', admin_path
-            %li{ :class => controller.controller_name == 'private_galleries' ? 'active' : '' }= link_to 'Private Galleries', admin_private_galleries_path
-            %li{ :class => controller.controller_name == 'galleries' ? 'active' : '' }= link_to 'Galleries', admin_galleries_path
-            %li{ :class => controller.controller_name == 'pages' ? 'active' : '' }= link_to 'Pages', admin_pages_path
-            - if photographer.blog_url.blank?
-              %li{ :class => controller.controller_name == 'posts' ? 'active' : '' }= link_to 'Posts', admin_posts_path
-            %li{ :class => controller.controller_name == 'photographers' ? 'active' : '' }= link_to 'Settings', edit_admin_photographer_path
-            %li.divider-vertical
-            %li= link_to 'Logout', destroy_photographer_session_path, :method => :delete
-        .pull-right= link_to('GrokPhoto Administration', admin_path, :class => 'brand')
-  .container
-    - if notice
-      .alert.alert-block{ :'data-dismiss' => 'alert' }
-        %a.close ×
-        %p= notice
-    .page-header
-      %h1= yield(:title).presence || 'Home'
+    .contain-to-grid.sticky
+      %nav.top-bar{"data-topbar" => ""}
+        %section.top-bar-section
+          / Left Nav Section
+          %ul.left
+            - if photographer_signed_in?
+              %li{ :class => controller.controller_name == 'events' ? 'active' : '' }= link_to 'Dashboard', admin_path
+              %li{ :class => controller.controller_name == 'private_galleries' ? 'active' : '' }= link_to 'Private Galleries', admin_private_galleries_path
+              %li{ :class => controller.controller_name == 'galleries' ? 'active' : '' }= link_to 'Galleries', admin_galleries_path
+              %li{ :class => controller.controller_name == 'pages' ? 'active' : '' }= link_to 'Pages', admin_pages_path
+              - if photographer.blog_url.blank?
+                %li{ :class => controller.controller_name == 'posts' ? 'active' : '' }= link_to 'Posts', admin_posts_path
+              %li{ :class => controller.controller_name == 'photographers' ? 'active' : '' }= link_to 'Settings', edit_admin_photographer_path
+              %li.divider
+              %li= link_to 'Logout', destroy_photographer_session_path, :method => :delete
+          %ul.title-area.right
+            %li.name
+              %h1=link_to 'Studio Cloud', root_path
     .row
-      - if content_for?(:sidebar)
-        .span3
-          .well
-            %h2 Instructions
-            = yield(:sidebar)
-            %p &nbsp;
-            %p &nbsp;
-        .span9= yield
-      - else
-        .span12= yield
-  #footer.container
-    &copy; #{link_to('GrokPhoto', 'http://grokphoto.org', :target => '_blank')}, #{Time.now.year}. All Rights Reserved.
+      .large-12.columns
+      - if notice
+        .alert-box.success{'data-alert' => ''}
+          = notice
+          %a.close{href: '#'} ×
+      .row
+        .large-12.columns
+          %h1= yield(:title).presence || 'Home'
+      .row
+        - if content_for?(:sidebar)
+          .large-4.columns
+            .panel.callout
+              %h2 Instructions
+              = yield(:sidebar)
+              %p &nbsp;
+              %p &nbsp;
+          .large-8.columns= yield
+        - else
+          .large-12.columns= yield
+    .row
+      .large-12.columns
+        &copy; #{link_to('GrokPhoto', 'http://grokphoto.org', :target => '_blank')}, #{Time.now.year}. All Rights Reserved.

@@ -9,6 +9,6 @@
   = f.input :remember_me, :as => :boolean, :hint => '&nbsp;Keeps you signed in.'.html_safe if devise_mapping.rememberable?
 
   .form-actions
-    = f.button :submit, 'Sign in', :class => 'btn-primary'
+    = f.button :submit, 'Sign in', :class => 'button'
     %p
     %p= render :partial => 'devise/shared/links'

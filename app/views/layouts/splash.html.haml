@@ -8,10 +8,11 @@
     - unless @meta_description.blank?
       %meta{ :name => "description", :content => @meta_description }
     = stylesheet_link_tag 'application'
+    = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    .outer
-      .container#content
+    .row
+      .large-12.columns#content
         = yield
     = render :partial => 'shared/footer'

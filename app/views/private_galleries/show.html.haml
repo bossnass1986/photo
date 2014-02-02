@@ -1,6 +1,6 @@
 - content_for :title, @private_gallery.name
 
-%ul.thumbnails
+%ul.clearing-thumbs.small-block-grid-3{"data-clearing" => ""}
   - @private_gallery.photos.each do |photo|
-    %li.span3
+    %li
       = link_to(image_tag(photo.photo.thumb('260x173!').url, :size => '260x173'), photo.photo.url, :class => "thumbnail", :rel => 'lightbox', :title => photo.name)

@@ -1,7 +1,4 @@
 jQuery ->
-  $("a[rel='lightbox']").fancybox
-    titlePosition: "inside"
-    overlayColor: "#444"
 
   $(".date_picker").datepicker dateFormat: "MM dd, yy"
 
@@ -15,8 +12,6 @@ jQuery ->
       $(this).parents('tr').remove()
     else if $(this).parents('li').length
       $(this).parents('li').remove()
-
-  $(".carousel").carousel interval: 8000
 
   $("#sorted-image-list").sortable
     handle: "div.title"

@@ -10,8 +10,8 @@
     .navbar-inner
       .container
         .pull-right= "#{yield(:page_title).presence || 'Private Gallery'} | #{photographer.name}"
-  .outer
-    .container#content
+  .row
+    .large-12.columns#content
       - if notice
         .alert.alert-block{ :'data-dismiss' => 'alert' }
           %a.close ×
@@ -19,6 +19,6 @@
       .page-header
         %h1= yield(:title).presence || 'Home'
       .row
-        .span12= yield
+        .large-12.columns= yield
   #footer.container
     = "&copy; #{Time.now.year}, #{photographer.name}, All Rights Reserved".html_safe

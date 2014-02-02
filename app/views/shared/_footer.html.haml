@@ -1,32 +1,32 @@
 %footer
   .container
     .row
-      .span12
+      .large-12.columns
         .row
-          .span2
+          .large-2.columns
             %h4 Photo Galleries
             %ul.unstyled
               - galleries.each do |gallery|
                 %li= link_to(truncate(gallery.name, :length => 32), gallery_url(gallery))
-          .span2
+          .large-2.columns
             %h4 Company Info
             %ul.unstyled
               - pages.each do |page|
                 %li= link_to(truncate(page.name, :length => 32), page_url(page))
               %li= link_to('Contact', new_contact_request_url)
-          .span3
+          .large-3.columns
             - if photographer.blog_url.blank?
               %h4 Recent Posts
               %ul.unstyled
                 - recent_posts.each do |post|
                   %li= link_to(truncate(post.title, :length => 32), post_url(post))
 
-          .span5.pull-right
+          .large-5.columns.right
             %p= photographer.description
   #footer-floor
     .container
       .row
-        .span12
+        .large-12
           %h4
             - unless photographer.phone.blank?
               = photographer.phone

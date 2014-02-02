@@ -6,5 +6,5 @@
 
 %div{ :style => "width:100%; float:left;" }
   %br
-  %ul.image_list#sorted-image-list
+  %ul.clearing-thumbs.small-block-grid-3{'data-clearing' => ''}
     = render :partial => "admin/photos/photo", :collection => @gallery.photos

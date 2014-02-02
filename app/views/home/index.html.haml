@@ -3,18 +3,25 @@
     %h1= photographer.name
     %p= photographer.tagline
 .row
-  .span12
-    #carousel.carousel
-      .carousel-inner
-        - galleries.each_with_index do |gallery, idx|
-          %div{ :class => "item#{' active' if idx == 0}" }
-            = link_to( image_tag(gallery.cover.thumb('940x500!').url), gallery_url(gallery) )
-
+  .large-12.columns
+    %ul{'data-orbit' => ''}
+      - galleries.each_with_index do |gallery, idx|
+        %li
+          = link_to( image_tag(gallery.cover.thumb('940x500!').url), gallery_url(gallery) )
+.tabs-content
+  #panel2-1.content.active
+    %p First panel content goes here...
+  #panel2-2.content
+    %p Second panel content goes here...
+  #panel2-3.content
+    %p Third panel content goes here...
+  #panel2-4.content
+    %p Fourth panel content goes here...
 .marketing
   - galleries.each_slice(3) do |galleries|
     .row
       - galleries.each do |gallery|
-        .span4
+        .large-4.columns
           %h2= link_to(gallery.name, gallery_path(gallery), :class => 'marketing-link')
           %p= gallery.description
           %p= link_to('View this gallery &raquo;'.html_safe, gallery_url(gallery), :class => 'btn')

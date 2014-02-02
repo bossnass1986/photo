@@ -10,20 +10,25 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          %ul.nav
+    .contain-to-grid.sticky
+      %nav.top-bar{"data-topbar" => ""}
+        %ul.title-area
+          %li.name
+            %h1= link_to photographer.name, root_url
+          %li.toggle-topbar.menu-icon
+            %a{href: "#"} Menu
+        %section.top-bar-section
+          / Left Nav Section
+          %ul.left
             - galleries.each do |gallery|
               %li{ :class => (defined?(@gallery) and @gallery.id == gallery.id ? 'active' : '') }= link_to(gallery.name, gallery_url(gallery))
             - pages.each do |page|
               %li{ :class => (defined?(@page) and @page.id == page.id ? 'active' : '') }= link_to(page.name, page_url(page))
             %li{ :class => controller.controller_name == 'posts' ? 'active' : '' }= link_to('Blog', photographer.blog_url.blank? ? posts_url : photographer.blog_url)
-            %li.divider-vertical
+            %li.divider
             %li{ :class => controller.controller_name == 'contact_requests' ? 'active' : '' }= link_to('Contact', new_contact_request_url)
-          .pull-right= link_to(photographer.name, root_url, :class => 'brand')
-    .outer
-      .container#content
+    .row
+      .large-12.columns#content
         - if notice
           .alert.alert-block{ :'data-dismiss' => 'alert' }
             %a.close ×
@@ -35,12 +40,12 @@
               %p.subtitle= yield(:subtitle)
         .row.content
           - if content_for?(:sidebar)
-            .span3
-              .well
+            .large-3.columns
+              .panel
                 = yield(:sidebar)
                 %p &nbsp;
                 %p &nbsp;
-            .span9= yield
+            .large-9.columns= yield
           - else
-            .span12= yield
+            .large-12.columns= yield
     = render :partial => 'shared/footer'
