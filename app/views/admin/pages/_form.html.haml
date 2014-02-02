@@ -4,13 +4,21 @@
   %p Upload an image that will accompany your body content.
   %p It's advisable that you fill out keywords and body with relevant content in order to list higher for related terms in search engines.
 
-= render "shared/error_messages", :target => @page
+= render 'shared/error_messages', :target => @page
 
-= form.input :name, :hint => 'Give your page a meaningful name. Like "Pricing" or "About me"'
-= form.input :image, :as => :file, :hint => 'You may upload an image to accompany the body text.'
-= form.hidden_field :retained_image
-= link_to( image_tag(@page.image.thumb('100x100').url), @page.image.url, :rel => 'lightbox' ) if @page.image_uid
-= form.input :body, :hint => 'The contents of the page. You may use markdown.'
-= render :partial => "admin/shared/seo_fields", :locals => { :form => form }
+%dl.tabs{'data-tab' => ''}
+  %dd.active=link_to 'Content', '#pages_content'
+  %dd=link_to 'Page Details', '#pages_page_details'
+  %dd=link_to 'SEO', '#pages_seo'
+.tabs-content
+  #pages_content.content.active
+    = form.input :body, :hint => 'The contents of the page. You may use markdown.'
+  #pages_page_details.content
+    = form.input :name, :hint => 'Give your page a meaningful name. Like "Pricing" or "About me"'
+    = form.input :image, :as => :file, :hint => 'You may upload an image to accompany the body text.'
+    = form.hidden_field :retained_image
+    = link_to( image_tag(@page.image.thumb('100x100').url), @page.image.url, :rel => 'lightbox' ) if @page.image_uid
+  #pages_seo.content
+    = render :partial => 'admin/shared/seo_fields', :locals => { :form => form }
 .form-actions
   = form.button :submit, :class => 'button'

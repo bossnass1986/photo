@@ -1,0 +1,22 @@
+.contain-to-grid.sticky
+  %nav.top-bar{"data-topbar" => ""}
+    %ul.title-area
+      %li.name
+        %h1= link_to photographer.name, root_url
+      %li.toggle-topbar.menu-icon
+        %a{href: "#"} Menu
+    %section.top-bar-section
+      / Left Nav Section
+      %ul.left
+        %li.has-dropdown
+          =link_to 'Information', '#'
+          %ul.dropdown
+            - pages.each do |page|
+              %li{ :class => (defined?(@page) and @page.id == page.id ? 'active' : '') }= link_to(page.name, page_url(page))
+        %li.has-dropdown
+          =link_to 'Galleries', '#'
+          %ul.dropdown
+            - galleries.each do |gallery|
+              %li= link_to(gallery.name, gallery_url(gallery))
+        %li{ :class => controller.controller_name == 'posts' ? 'active' : '' }= link_to('Blog', photographer.blog_url.blank? ? posts_url : photographer.blog_url)
+        %li{ :class => controller.controller_name == 'contact_requests' ? 'active' : '' }= link_to('Contact Us', new_contact_request_url)

@@ -1,22 +1,19 @@
-.jumbotron.masthead
-  .inner
-    %h1= photographer.name
-    %p= photographer.tagline
 .row
   .large-12.columns
+    %h3.subheader= "Welcome to #{photographer.name}"
+.row
+  .large-12.columns
+    .preloader
     %ul{'data-orbit' => ''}
       - galleries.each_with_index do |gallery, idx|
         %li
           = link_to( image_tag(gallery.cover.thumb('940x500!').url), gallery_url(gallery) )
-.tabs-content
-  #panel2-1.content.active
-    %p First panel content goes here...
-  #panel2-2.content
-    %p Second panel content goes here...
-  #panel2-3.content
-    %p Third panel content goes here...
-  #panel2-4.content
-    %p Fourth panel content goes here...
+          .orbit-caption
+            %h4= gallery.name
+            %p= gallery.description
+.row
+  .large-12.columns
+    = photographer.description
 .marketing
   - galleries.each_slice(3) do |galleries|
     .row
