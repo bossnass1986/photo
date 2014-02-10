@@ -21,7 +21,7 @@ class Admin::GalleriesController < Admin::HomeController
   end
 
   def edit
-    respond_with :admin, @gallery
+    respond_to { |format| format.js }
   end
 
   def update

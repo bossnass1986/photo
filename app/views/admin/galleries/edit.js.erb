@@ -1,0 +1,27 @@
+$('#page_view').html('<%= (escape_javascript(render :partial => 'edit')) %>')
+$(function(){ $(document).foundation(); });
+$("#sorted-image-list").sortable({
+    handle: "div.title",
+    revert: true,
+    update: function() {
+        return $.ajax({
+            type: "put",
+            data: $("#sorted-image-list").sortable("serialize"),
+            dataType: "script",
+            url: $("meta[name=sortable_path]").attr("content"),
+            complete: function(request) {
+                $("#message").html("<div class='alert-box success radius' data-alert>Your changes have been saved.<a href='#' class='close'>×</a></div>").fadeIn("slow");
+                $("#message").html("<div class='alert-box success radius' data-alert>Your changes have been saved.<a href='#' class='close'>×</a></div>").delay(3000).fadeOut("slow");
+            }
+        });
+    }
+});
+$(".delete").on("ajax:success", function(data, status, xhr) {
+    if ($(this).parents("tr").length) {
+        return $(this).parents("tr").remove();
+    } else {
+        if ($(this).parents("li").length) {
+            return $(this).parents("li").remove();
+        }
+    }
+});

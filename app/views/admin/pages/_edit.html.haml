@@ -1,0 +1,8 @@
+%h2.subheader=@page.name
+= simple_form_for(@page, :url => admin_page_path(@page), :method => :put, :html => { :class => 'form-vertical' }) do |form|
+  = render form
+
+- content_for :info do
+  %p Enter a descriptive name for the page. i.e. About Me.
+  %p Upload an image that will accompany your body content.
+  %p It's advisable that you fill out keywords and body with relevant content in order to list higher for related terms in search engines.

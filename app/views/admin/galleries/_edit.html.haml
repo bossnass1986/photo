@@ -1,0 +1,14 @@
+- content_for :meta do
+  %meta{ :name => "sortable_path", :content => sort_admin_photos_path(:gallery_id => @gallery.to_param) }
+
+%dl.tabs{'data-tab' => ''}
+  %dd.active=link_to 'Images', '#gallery_images'
+  %dd=link_to 'Page Details', '#gallery_page_details'
+.tabs-content
+  #gallery_images.content.active
+    #message
+    %ul.small-block-grid-3.image_list#sorted-image-list
+      = render :partial => "admin/photos/photo", :collection => @gallery.photos
+  #gallery_page_details.content
+    = simple_form_for(@gallery, :url => admin_gallery_path(@gallery), :method => :put, :html => { :class => 'form-vertical' }) do |form|
+      = render form

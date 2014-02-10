@@ -3,7 +3,6 @@
   %head
     %title= "#{yield(:title).presence || 'Home'}  | #{photographer.name} Administration"
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'application'
     = csrf_meta_tags
     = yield(:meta)
   %body.admin
@@ -13,10 +12,10 @@
           / Left Nav Section
           %ul.left
             - if photographer_signed_in?
+              %li{ :class => controller.controller_name == 'pages' ? 'active' : '' }= link_to 'Web Pages', admin_pages_path
+              %li{ :class => controller.controller_name == 'galleries' ? 'active' : '' }= link_to 'Website Galleries', admin_galleries_path
               %li{ :class => controller.controller_name == 'events' ? 'active' : '' }= link_to 'Dashboard', admin_path
-              %li{ :class => controller.controller_name == 'private_galleries' ? 'active' : '' }= link_to 'Private Galleries', admin_private_galleries_path
-              %li{ :class => controller.controller_name == 'galleries' ? 'active' : '' }= link_to 'Galleries', admin_galleries_path
-              %li{ :class => controller.controller_name == 'pages' ? 'active' : '' }= link_to 'Pages', admin_pages_path
+              %li{ :class => controller.controller_name == 'private_galleries' ? 'active' : '' }= link_to 'Client Galleries', admin_private_galleries_path
               - if photographer.blog_url.blank?
                 %li{ :class => controller.controller_name == 'posts' ? 'active' : '' }= link_to 'Posts', admin_posts_path
               %li{ :class => controller.controller_name == 'photographers' ? 'active' : '' }= link_to 'Settings', edit_admin_photographer_path
@@ -43,8 +42,22 @@
               %p &nbsp;
               %p &nbsp;
           .large-8.columns= yield
+        - elsif content_for?(:sidenav)
+          .large-3.columns#side-nav
+            - if content_for?(:side_action)
+              = yield(:side_action)
+            %ul.side-nav
+              = yield(:sidenav)
+              %p &nbsp;
+              %p &nbsp;
+          .large-9.columns
+            -if content_for?(:info)
+              = yield(:info)
+            #page_view
+              = yield
         - else
           .large-12.columns= yield
     .row
       .large-12.columns
         &copy; #{link_to('Studio Cloud', 'http://www.studiocloud.com.au', :target => '_blank')}, #{Time.now.year}. All Rights Reserved.
+    = javascript_include_tag 'application'

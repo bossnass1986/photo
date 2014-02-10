@@ -1,24 +1,17 @@
 - content_for :title, "#{controller.action_name.titleize} Page"
-- content_for :sidebar do
-  %p Enter a descriptive name for the page. I.e. About Me.
-  %p Upload an image that will accompany your body content.
-  %p It's advisable that you fill out keywords and body with relevant content in order to list higher for related terms in search engines.
 
 = render 'shared/error_messages', :target => @page
 
 %dl.tabs{'data-tab' => ''}
-  %dd.active=link_to 'Content', '#pages_content'
-  %dd=link_to 'Page Details', '#pages_page_details'
+  %dd.active=link_to 'Page Details', '#pages_page_details'
   %dd=link_to 'SEO', '#pages_seo'
 .tabs-content
-  #pages_content.content.active
-    = form.input :body, :hint => 'The contents of the page. You may use markdown.'
-  #pages_page_details.content
-    = form.input :name, :hint => 'Give your page a meaningful name. Like "Pricing" or "About me"'
-    = form.input :image, :as => :file, :hint => 'You may upload an image to accompany the body text.'
+  #pages_page_details.content.active
+    = form.input :name, :placeholder => 'Give your page a meaningful name. Like "Pricing"'
+    = form.input :body, :placeholder => 'The contents of the page. You may use markdown.'
+    = form.input :image, :as => :file, :placeholder => 'You may upload an image to accompany the body text.'
     = form.hidden_field :retained_image
     = link_to( image_tag(@page.image.thumb('100x100').url), @page.image.url, :rel => 'lightbox' ) if @page.image_uid
   #pages_seo.content
     = render :partial => 'admin/shared/seo_fields', :locals => { :form => form }
-.form-actions
-  = form.button :submit, :class => 'button'
+  = form.submit :class => 'button tiny secondary'

@@ -1,7 +1,13 @@
 - content_for :title do
   Pages
 
-%p= link_to(raw("<i class='fi-plus white'></i> New Page"), new_admin_page_path, :class => 'button tiny')
+- content_for :side_action do
+  = link_to(raw("<i class='fi-plus white'></i> New Page"), new_admin_page_path, :class => 'button tiny secondary expand', :remote => true)
+
+- content_for :sidenav do
+  - @pages.each do |obj|
+    %li
+      = link_to obj.name, edit_admin_page_path(obj), :remote => true
 
 %table.table.table-bordered.table-striped
   %thead
@@ -15,5 +21,5 @@
         %td= obj.name
         %td= obj.created_at.strftime("%b %d, %Y")
         %td= link_to('View', page_path(obj))
-        %td= link_to('Edit', edit_admin_page_path(obj))
+        %td= link_to('Edit', edit_admin_page_path(obj), :remote => true)
         %td= link_to('Delete', admin_page_path(obj), :method => :delete, :confirm => 'Are you sure?', :remote => true, 'data-type' => 'json')

@@ -5,10 +5,12 @@ class Admin::PagesController < Admin::HomeController
   def index
     @pages = Page.order(:name)
     respond_with :admin, @pages
+    #respond_to { |format| format.js }
   end
 
   def new
-    respond_with( :admin, @page = Page.new )
+    @page = Page.new
+    #respond_to { |format| format.js }
   end
 
   def create
@@ -17,7 +19,7 @@ class Admin::PagesController < Admin::HomeController
   end
 
   def edit
-    respond_with :admin, @page
+    #respond_to { |format| format.js }
   end
 
   def update

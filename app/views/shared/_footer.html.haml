@@ -5,19 +5,19 @@
         .row
           .large-2.columns
             %h4 Photo Galleries
-            %ul.unstyled
+            %ul.side-nav
               - galleries.each do |gallery|
                 %li= link_to(truncate(gallery.name, :length => 32), gallery_url(gallery))
           .large-2.columns
             %h4 Company Info
-            %ul.unstyled
+            %ul.side-nav
               - pages.each do |page|
                 %li= link_to(truncate(page.name, :length => 32), page_url(page))
               %li= link_to('Contact', new_contact_request_url)
           .large-3.columns
             - if photographer.blog_url.blank?
               %h4 Recent Posts
-              %ul.unstyled
+              %ul.side-nav
                 - recent_posts.each do |post|
                   %li= link_to(truncate(post.title, :length => 32), post_url(post))
 
@@ -26,7 +26,16 @@
   #footer-floor
     .container
       .row
-        .large-12
+        .large-3.columns
+          %ul.inline-list
+            - unless photographer.facebook_url.blank?
+              %li=link_to '<i class="fi-social-facebook"></i>'.html_safe, photographer.facebook_url
+            - unless photographer.twitter_url.blank?
+              %li=link_to '<i class="fi-social-twitter"></i>'.html_safe, photographer.twitter_url
+          %p powered by studio cloud
+        .large-6.columns
+          %p= "Copyright &copy; #{Time.now.year}, #{photographer.name}".html_safe
+        .large-3.columns
           %h4
             - unless photographer.phone.blank?
               = photographer.phone

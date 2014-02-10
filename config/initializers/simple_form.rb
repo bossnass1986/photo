@@ -45,36 +45,40 @@ SimpleForm.setup do |config|
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
 
-  config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+  config.wrappers :bootstrap, :tag => 'div', :class => 'row', :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
-    b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |ba|
+    b.use :label, :class => 'small-3 columns'
+    b.wrapper :tag => 'div', :class => 'small-9 columns' do |ba|
       ba.use :input
-      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
-      ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
+      ba.use :error, :wrap_with => { :tag => 'small', :class => 'error' }
+      ba.use :hint,  :wrap_with => { :tag => 'span', :class => 'has-tip', :title => :hint }
     end
   end
 
-  config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+  config.wrappers :prepend, :tag => 'div', :class => 'row', :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
-    b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |input|
-      input.wrapper :tag => 'div', :class => 'input-prepend' do |prepend|
-        prepend.use :input
+    b.wrapper :tag => 'div', :class => 'small-12 columns' do |input|
+      input.wrapper :tag => 'div', :class => 'row collapse' do |prepend|
+        prepend.wrapper :tag => 'div', :class => 'small-3 columns' do |l|
+          l.use :label, :wrap_with => { :tag => 'span', :class => 'prefix'}
+        end
+        prepend.wrapper :tag => 'div', :class => 'small-9 columns' do |i|
+          i.use :input
+        end
       end
       input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
-      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+      input.use :error, :wrap_with => { :tag => 'small', :class => 'error' }
     end
   end
 
-  config.wrappers :append, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+  config.wrappers :append, :tag => 'div', :class => 'row', :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |input|
-      input.wrapper :tag => 'div', :class => 'input-append' do |append|
+      input.wrapper :tag => 'div', :class => 'postfix' do |append|
         append.use :input
       end
       input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
@@ -92,10 +96,10 @@ SimpleForm.setup do |config|
   # Defaults to :nested for bootstrap config.
   #   :inline => input + label
   #   :nested => label > input
-  config.boolean_style = :nested
+  config.boolean_style = :inline
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'button'
 
   # Method used to tidy up errors.
   # config.error_method = :first
@@ -133,7 +137,7 @@ SimpleForm.setup do |config|
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  config.label_class = 'inline'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form

@@ -5,7 +5,7 @@
     = @gallery.body.to_html.html_safe
     %br
 
-%ul.clearing-thumbs{'data-clearing' => ''}
+%ul.small-block-grid-4
   - @gallery.photos.each do |photo|
     %li
-      = link_to(image_tag(photo.photo.thumb('260x173!').url, :size => '260x173', :alt => photo.name), photo.photo.url, :class => 'th')
+      = link_to(image_tag(photo.photo.thumb('250x250#').url, :size => '250x250', :alt => photo.name), photo.photo.url, :class => 'th')

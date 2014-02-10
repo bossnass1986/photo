@@ -1,0 +1,10 @@
+@import "foundation_and_overrides";
+
+[data-clearing] li {
+  margin-right: 0px !important;
+}
+#side-nav {
+  border-right: 1px dashed #b9b9b9;
+}
+.tabs-content > .content.active {
+  width: 100%; }

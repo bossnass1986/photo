@@ -1,11 +1,16 @@
 - content_for :title do
   Private Galleries
 
+- content_for :side_action do
+  = link_to(raw("<i class='fi-plus white'></i> New Private Gallery"), new_admin_private_gallery_path, :class => 'button tiny secondary expand')
+
+- content_for :sidenav do
+  - @private_galleries.each do |obj|
+    %li= link_to(obj.name, edit_admin_private_gallery_path(obj), :remote => true)
+
 .right
   = form_for :search, :url => admin_private_galleries_path, :method => :get, :class => 'form-search' do |form|
     = form.text_field :q, :placeholder => 'Search', :class => 'input-medium search-query', :value => defined?(params[:search][:q]) ? params[:search][:q] : ''
-
-%p= link_to(raw("<i class='fi-plus white'></i> New Private Gallery"), new_admin_private_gallery_path, :class => 'button tiny')
 
 %table
   %thead
