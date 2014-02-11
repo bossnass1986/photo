@@ -9,6 +9,7 @@ gem 'thin'
 gem 'json', '~> 1.6'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'datejs-rails'
 
 # Markup / templates
 gem 'rdiscount', '~> 1.6'

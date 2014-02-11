@@ -2,7 +2,7 @@
   Galleries
 
 - content_for :side_action do
-  = link_to(raw("<i class='fi-plus white'></i> New Gallery"), new_admin_gallery_path, :class => 'button tiny secondary expand')
+  = link_to(raw("<i class='fi-plus white'></i> New Gallery"), new_admin_gallery_path, :class => 'button tiny secondary expand', :remote => true)
 
 - content_for :sidenav do
   - @galleries.each do |obj|

@@ -1,27 +1,42 @@
 $('#page_view').html('<%= (escape_javascript(render :partial => 'edit')) %>')
-$(function(){ $(document).foundation(); });
-$("#sorted-image-list").sortable({
-    handle: "div.title",
-    revert: true,
-    update: function() {
-        return $.ajax({
-            type: "put",
-            data: $("#sorted-image-list").sortable("serialize"),
-            dataType: "script",
-            url: $("meta[name=sortable_path]").attr("content"),
-            complete: function(request) {
-                $("#message").html("<div class='alert-box success radius' data-alert>Your changes have been saved.<a href='#' class='close'>×</a></div>").fadeIn("slow");
-                $("#message").html("<div class='alert-box success radius' data-alert>Your changes have been saved.<a href='#' class='close'>×</a></div>").delay(3000).fadeOut("slow");
-            }
-        });
-    }
+$(function(){
+    $('#gallery_name').keyup(function(){
+        $('h2').text($(this).val());
+    });
 });
-$(".delete").on("ajax:success", function(data, status, xhr) {
-    if ($(this).parents("tr").length) {
-        return $(this).parents("tr").remove();
-    } else {
-        if ($(this).parents("li").length) {
-            return $(this).parents("li").remove();
+$(function(){ $(document).foundation(); });
+jQuery(function() {
+    $("#sorted-image-list").sortable({
+        handle: "div.title",
+        revert: true,
+        update: function() {
+            return $.ajax({
+                type: "put",
+                data: $("#sorted-image-list").sortable("serialize"),
+                dataType: "script",
+                url: $("meta[name=sortable_path]").attr("content"),
+                complete: function(request) {
+                    $("#message").html("<div class='alert-box success radius' data-alert>Your changes have been saved.<a href='#' class='close'>×</a></div>").fadeIn("slow");
+                    $("#message").html("<div class='alert-box success radius' data-alert>Your changes have been saved.<a href='#' class='close'>×</a></div>").delay(3000).fadeOut("slow");
+                }
+            });
         }
-    }
+    });
+    $("a[data-remote=\"true\"]").on("ajax:error", function(xhr, status, error) {
+        return alert("Ran into a problem with this record.");
+    });
+    $(".delete").on("ajax:success", function(data, status, xhr) {
+        if ($(this).parents("tr").length) {
+            return $(this).parents("tr").remove();
+        } else {
+            if ($(this).parents("li").length) {
+                return $(this).parents("li").remove();
+            }
+        }
+    });
+    $("#side-nav ul li a").hover((function() {
+        $(this).prepend("<span class='fi-pencil' style='margin-left: -16px'></span> ");
+    }), function() {
+        $(this).children("span").remove();
+    });
 });

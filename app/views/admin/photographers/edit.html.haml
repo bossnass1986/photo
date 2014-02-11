@@ -3,7 +3,7 @@
   %p The information you enter here is available in some areas of the site and also within system generated email notifications to your clients.
   %p Click the "Update Settings" button when you're done.
 
-= simple_form_for(@photographer, :url => admin_photographer_path, :method => :put, :html => { :class => 'form-vertical' }) do |form|
+= simple_form_for(@photographer, :url => admin_photographer_path, :method => :put, :html => { 'data-abide' => '' }) do |form|
   = render "shared/error_messages", :target => @photographer
   %dl.tabs{'data-tab' => ''}
     %dd.active=link_to 'General', '#settings_general'
@@ -31,5 +31,4 @@
       = form.input :google_analytics_key, :placeholder => 'Your google analytics key if you have one.'
       = form.input :google_verification, :placeholder => 'Your google webmaster tools site verification meta tag content if you have one.'
       = form.input :conversion_code, :placeholder => 'Paste the conversion code to be called after a contact submission if you have any (I.e. Google Adwords).'
-  .form-actions
     = form.button :submit, 'Update Settings', :class => 'button', :disable_with => 'Updating Settings'

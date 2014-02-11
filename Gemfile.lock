@@ -48,6 +48,8 @@ GEM
     daemons (1.1.9)
     dalli (1.1.5)
     database_cleaner (0.9.1)
+    datejs-rails (2.0.1)
+      railties (>= 3.1)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
     delayed_job_active_record (0.4.4)
@@ -214,6 +216,7 @@ DEPENDENCIES
   daemons
   dalli (~> 1.1)
   database_cleaner (~> 0.8)
+  datejs-rails
   delayed_job (~> 3.0)
   delayed_job_active_record (~> 0.3)
   devise (~> 1.5)

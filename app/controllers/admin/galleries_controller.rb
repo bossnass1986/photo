@@ -8,7 +8,8 @@ class Admin::GalleriesController < Admin::HomeController
   end
 
   def new
-    respond_with( :admin, @gallery = Gallery.new )
+    @gallery = Gallery.new
+    #respond_with( :admin, @gallery = Gallery.new )
   end
 
   def create
@@ -21,7 +22,7 @@ class Admin::GalleriesController < Admin::HomeController
   end
 
   def edit
-    respond_to { |format| format.js }
+    #respond_to { |format| format.js }
   end
 
   def update

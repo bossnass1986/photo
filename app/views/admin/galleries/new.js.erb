@@ -1,6 +1,6 @@
 $('#page_view').html('<%= (escape_javascript(render :partial => 'new')) %>')
 $(function(){
-    $('#page_name').keyup(function(){
+    $('#gallery_name').keyup(function(){
         $('h2').text($(this).val());
     });
 });
