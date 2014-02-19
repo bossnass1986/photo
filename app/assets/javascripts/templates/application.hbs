@@ -1,0 +1,16 @@
+<header>
+    <h1>App title: {{title}}</h1>
+
+    <nav>
+        {{#linkTo "index"}}Index{{/linkTo}}
+        {{#linkTo "about"}}About{{/linkTo}}
+    </nav>
+</header>
+
+<div id='wrapper'>
+    {{outlet}}
+</div>
+
+<footer>
+    Footer!
+</footer>

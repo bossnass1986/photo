@@ -8,7 +8,7 @@ Grokphoto::Application.routes.draw do
   resources :private_galleries, :only => :show
   resources :galleries, :only => :show
   resources :pages, :only => :show
-  resources :posts, :only => [:index, :show]
+  resources :posts, :only => [:index, :show], :to => 'posts#index'
   resources :contact_requests, :only => [:new, :create] do
     get :thanks, :on => :collection
   end
@@ -17,9 +17,11 @@ Grokphoto::Application.routes.draw do
 
   match 'admin' => 'admin/pages#index'
   namespace :admin do
+    resources :pages
+      get '/', :to => 'pages#index'
     resources :events, :only => :index
     resource :photographer, :only => [:edit, :update]
-    resources :pages
+
     resources :posts
     resources :galleries
     resources :private_galleries do

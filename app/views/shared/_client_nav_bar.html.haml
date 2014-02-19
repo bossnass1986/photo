@@ -18,5 +18,5 @@
           %ul.dropdown
             - galleries.each do |gallery|
               %li= link_to(gallery.name, gallery_url(gallery))
-        %li{ :class => controller.controller_name == 'posts' ? 'active' : '' }= link_to('Blog', photographer.blog_url.blank? ? posts_url : photographer.blog_url)
+        %li{ :class => controller.controller_name == 'pages' ? 'active' : '' }= link_to('Blog', photographer.blog_url.blank? ? posts_url : photographer.blog_url)
         %li{ :class => controller.controller_name == 'contact_requests' ? 'active' : '' }= link_to('Contact Us', new_contact_request_url)

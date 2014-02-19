@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
   after_destroy :clear_cache, :log_destroy_event
 
   # Caching
-  CACHED = 'posts'
+  CACHED = 'pages'
   CACHED_RECENT = 'recent_posts'
 
   def self.cached

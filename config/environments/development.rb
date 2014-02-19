@@ -28,4 +28,7 @@ Grokphoto::Application.configure do
   config.assets.compress = false
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' } # TODO - change this to whatever you run development on. I.e. :host => 'localhost:3000'
+
+  # Expands the lines which load the assets
+  config.assets.debug = true
 end

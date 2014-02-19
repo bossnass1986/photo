@@ -1,24 +1,26 @@
-.row
-  .large-12.columns
-    %h3.subheader= "Welcome to #{photographer.name}"
-.row
-  .large-12.columns
-    .preloader
-    %ul{'data-orbit' => ''}
-      - galleries.each_with_index do |gallery, idx|
-        %li
-          = link_to( image_tag(gallery.cover.thumb('940x500!').url), gallery_url(gallery) )
-          .orbit-caption
-            %h4= gallery.name
-            %p= gallery.description
-.row
-  .large-12.columns
-    = photographer.description
-.marketing
-  - galleries.each_slice(3) do |galleries|
-    .row
-      - galleries.each do |gallery|
-        .large-4.columns
-          %h2= link_to(gallery.name, gallery_path(gallery), :class => 'marketing-link')
-          %p= gallery.description
-          %p= link_to('View this gallery &raquo;'.html_safe, gallery_url(gallery), :class => 'btn')
+<!-- nothing needs to go here, application.hbs will get loaded by Ember automatically -->
+
+-#-#.row
+-#  .large-12.columns
+-#    %h3.subheader= "Welcome to #{photographer.name}"
+-#.row
+-#  .large-12.columns
+-#    .preloader
+-#    %ul{'data-orbit' => ''}
+-#      - galleries.each_with_index do |gallery, idx|
+-#        %li
+-#          = link_to( image_tag(gallery.cover.thumb('940x500!').url), gallery_url(gallery) )
+-#          .orbit-caption
+-#            %h4= gallery.name
+-#            %p= gallery.description
+-#.row
+-#  .large-12.columns
+-#    = photographer.description
+-#.marketing
+-#  - galleries.each_slice(3) do |galleries|
+-#    .row
+-#      - galleries.each do |gallery|
+-#        .large-4.columns
+-#          %h2= link_to(gallery.name, gallery_path(gallery), :class => 'marketing-link')
+-#          %p= gallery.description
+-#          %p= link_to('View this gallery &raquo;'.html_safe, gallery_url(gallery), :class => 'btn')

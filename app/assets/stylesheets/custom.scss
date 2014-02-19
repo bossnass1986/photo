@@ -8,3 +8,10 @@
 }
 .tabs-content > .content.active {
   width: 100%; }
+
+.sortable-placeholder {
+  border: 1px dashed #CCC;
+  background: none;
+  min-height: 8rem;
+}
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }

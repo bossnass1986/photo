@@ -7,9 +7,11 @@ gem 'thin'
 
 # Javascript
 gem 'json', '~> 1.6'
-gem 'jquery-rails'
+gem 'jquery-rails', '3.0.3'
 gem 'jquery-ui-rails'
 gem 'datejs-rails'
+gem 'ember-rails'
+gem 'ember-data-source'
 
 # Markup / templates
 gem 'rdiscount', '~> 1.6'

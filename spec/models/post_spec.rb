@@ -13,7 +13,7 @@ describe Post do
   end
   
   context "recent" do
-    it "should return the list of recent posts" do
+    it "should return the list of recent pages" do
       post = FactoryGirl.create(:post)
       FactoryGirl.create(:post)
       Post.recent.size.should be 2
